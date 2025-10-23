@@ -46,10 +46,10 @@
     }
 
     &-close.ToolIcon_type_button {
-      background-color: $oc-blue-6;
+      background-color: $oc-gray-6;
       align-self: flex-end;
       &:hover {
-        background-color: $oc-blue-8;
+        background-color: $oc-gray-8;
       }
       .ToolIcon__icon {
         width: auto;

@@ -1,5 +1,5 @@
 {
-  "name": "@excalidraw/excalidraw",
+  "name": "@whiteboard/whiteboard",
   "version": "0.18.0",
   "type": "module",
   "types": "./dist/types/excalidraw/index.d.ts",
@@ -38,14 +38,13 @@
   "publishConfig": {
     "access": "public"
   },
-  "description": "Excalidraw as a React component",
+  "description": "Whiteboard - A minimalist collaborative drawing tool",
   "license": "MIT",
   "keywords": [
-    "excalidraw",
-    "excalidraw-embed",
+    "whiteboard",
+    "drawing",
     "react",
-    "npm",
-    "npm excalidraw"
+    "collaborative"
   ],
   "browserslist": {
     "production": [
@@ -66,9 +65,9 @@
       "last 1 safari version"
     ]
   },
-  "repository": "https://github.com/excalidraw/excalidraw",
-  "bugs": "https://github.com/excalidraw/excalidraw/issues",
-  "homepage": "https://github.com/excalidraw/excalidraw/tree/master/packages/excalidraw",
+  "repository": "",
+  "bugs": "",
+  "homepage": "",
   "scripts": {
     "gen:types": "rimraf types && tsc",
     "build:esm": "rimraf dist && node ../../scripts/buildPackage.js && yarn gen:types"
@@ -79,9 +78,9 @@
   },
   "dependencies": {
     "@braintree/sanitize-url": "6.0.2",
-    "@excalidraw/common": "0.18.0",
-    "@excalidraw/element": "0.18.0",
-    "@excalidraw/math": "0.18.0",
+    "@whiteboard/common": "0.18.0",
+    "@whiteboard/element": "0.18.0",
+    "@whiteboard/math": "0.18.0",
     "@excalidraw/laser-pointer": "1.3.1",
     "@excalidraw/mermaid-to-excalidraw": "1.1.3",
     "@excalidraw/random-username": "1.1.0",

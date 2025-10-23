@@ -1,8 +1,8 @@
 .excalidraw {
-  --color-primary-contrast-offset: #625ee0; // to offset Chubb illusion
+  --color-primary-contrast-offset: #4d4d4d; // to offset Chubb illusion
 
   &.theme--dark {
-    --color-primary-contrast-offset: #726dff; // to offset Chubb illusion
+    --color-primary-contrast-offset: #b8b8b8; // to offset Chubb illusion
   }
 
   .top-right-ui {
@@ -84,7 +84,7 @@
   }
 }
 
-.excalidraw-app.is-collaborating {
+.schema-app.is-collaborating {
   [data-testid="clear-canvas-button"] {
     display: none;
   }
@@ -121,5 +121,16 @@
     &:hover {
       color: black !important;
     }
+  }
+}
+
+.schema-app-wrapper {
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 0.8s ease-in;
+
+  &--fadeIn {
+    opacity: 1;
   }
 }

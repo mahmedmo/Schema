@@ -140,7 +140,7 @@ body.excalidraw-cursor-resize * {
   }
 
   .FixedSideContainer {
-    padding-top: var(--sat, 0);
+    padding-top: max(var(--sat, 0), 20px);
     padding-right: var(--sar, 0);
     padding-bottom: var(--sab, 0);
     padding-left: var(--sal, 0);
@@ -222,7 +222,7 @@ body.excalidraw-cursor-resize * {
   .buttonList label:focus-within,
   input:focus-visible {
     outline: transparent;
-    box-shadow: 0 0 0 1px var(--color-brand-hover);
+    box-shadow: 0 0 0 1px var(--color-surface-high);
   }
 
   .buttonList {
@@ -239,6 +239,12 @@ body.excalidraw-cursor-resize * {
     button,
     .zIndexButton {
       @include outlineButtonIconStyles;
+
+      &:hover {
+        @at-root .excalidraw.theme--dark#{&} {
+          background-color: #505050;
+        }
+      }
     }
   }
 
@@ -684,7 +690,7 @@ body.excalidraw-cursor-resize * {
   @at-root .excalidraw.theme--dark#{&} {
     .App-mobile-menu,
     .App-menu__left {
-      --button-hover-bg: #363541;
+      --button-hover-bg: var(--color-surface-high);
       --button-bg: var(--color-surface-high);
     }
   }
@@ -789,5 +795,33 @@ body.excalidraw-cursor-resize * {
     font-weight: 700;
     letter-spacing: 0.6px;
     font-family: "Assistant";
+  }
+
+  // Electron window draggable region
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 30px;
+    -webkit-app-region: drag;
+    z-index: var(--zIndex-ui-top);
+    pointer-events: none;
+  }
+
+  // Make all interactive elements non-draggable
+  button,
+  input,
+  textarea,
+  select,
+  a,
+  .Island,
+  .ToolIcon,
+  .buttonList,
+  .Stack,
+  .layer-ui__wrapper,
+  .FixedSideContainer {
+    -webkit-app-region: no-drag;
   }
 }

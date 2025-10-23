@@ -1,5 +1,5 @@
 {
-  "name": "@excalidraw/utils",
+  "name": "@whiteboard/utils",
   "version": "0.1.2",
   "type": "module",
   "types": "./dist/types/utils/src/index.d.ts",
@@ -19,14 +19,14 @@
   "files": [
     "dist/*"
   ],
-  "description": "Excalidraw utility functions",
+  "description": "Whiteboard utility functions",
   "publishConfig": {
     "access": "public"
   },
   "license": "MIT",
   "keywords": [
-    "excalidraw",
-    "excalidraw-utils"
+    "whiteboard",
+    "whiteboard-utils"
   ],
   "browserslist": {
     "production": [
@@ -66,8 +66,8 @@
     "wawoff2": "2.0.1",
     "which": "4.0.0"
   },
-  "bugs": "https://github.com/excalidraw/excalidraw/issues",
-  "repository": "https://github.com/excalidraw/excalidraw",
+  "bugs": "",
+  "repository": "",
   "scripts": {
     "gen:types": "rimraf types && tsc",
     "build:esm": "rimraf dist && node ../../scripts/buildUtils.js && yarn gen:types"

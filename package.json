@@ -1,9 +1,11 @@
 {
   "private": true,
-  "name": "excalidraw-monorepo",
+  "name": "whiteboard-monorepo",
+  "version": "1.0.0",
+  "main": "electron-main.js",
   "packageManager": "yarn@1.22.22",
   "workspaces": [
-    "excalidraw-app",
+    "schema-app",
     "packages/*",
     "examples/*"
   ],
@@ -22,6 +24,9 @@
     "@vitest/ui": "2.0.5",
     "chai": "4.3.6",
     "dotenv": "16.0.1",
+    "electron": "38.4.0",
+    "electron-builder": "26.0.12",
+    "electron-icon-builder": "2.0.1",
     "eslint-config-prettier": "8.5.0",
     "eslint-config-react-app": "7.0.1",
     "eslint-plugin-import": "2.31.0",
@@ -50,19 +55,22 @@
   "prettier": "@excalidraw/prettier-config",
   "scripts": {
     "build-node": "node ./scripts/build-node.js",
-    "build:app:docker": "yarn --cwd ./excalidraw-app build:app:docker",
-    "build:app": "yarn --cwd ./excalidraw-app build:app",
+    "build:app:docker": "yarn --cwd ./schema-app build:app:docker",
+    "build:app": "yarn --cwd ./schema-app build:app",
     "build:common": "yarn --cwd ./packages/common build:esm",
     "build:element": "yarn --cwd ./packages/element build:esm",
     "build:excalidraw": "yarn --cwd ./packages/excalidraw build:esm",
     "build:math": "yarn --cwd ./packages/math build:esm",
     "build:packages": "yarn build:common && yarn build:math && yarn build:element && yarn build:excalidraw",
-    "build:version": "yarn --cwd ./excalidraw-app build:version",
-    "build": "yarn --cwd ./excalidraw-app build",
-    "build:preview": "yarn --cwd ./excalidraw-app build:preview",
-    "start": "yarn --cwd ./excalidraw-app start",
-    "start:production": "yarn --cwd ./excalidraw-app start:production",
+    "build:version": "yarn --cwd ./schema-app build:version",
+    "build": "yarn --cwd ./schema-app build",
+    "build:preview": "yarn --cwd ./schema-app build:preview",
+    "start": "yarn --cwd ./schema-app start",
+    "start:production": "yarn --cwd ./schema-app start:production",
     "start:example": "yarn build:packages && yarn --cwd ./examples/with-script-in-browser start",
+    "electron:dev": "NODE_ENV=development electron .",
+    "electron:build": "yarn build && electron-builder --mac",
+    "electron:pack": "yarn build && electron-builder --mac --dir",
     "test:all": "yarn test:typecheck && yarn test:code && yarn test:other && yarn test:app --watch=false",
     "test:app": "vitest",
     "test:code": "eslint --max-warnings=0 --ext .js,.ts,.tsx .",
@@ -90,5 +98,50 @@
   },
   "resolutions": {
     "strip-ansi": "6.0.1"
+  },
+  "build": {
+    "appId": "com.schema.app",
+    "productName": "Schema",
+    "files": [
+      "electron-main.js",
+      "schema-app/build/**/*",
+      "!schema-app/build/**/*.map"
+    ],
+    "directories": {
+      "output": "dist-electron"
+    },
+    "mac": {
+      "category": "public.app-category.graphics-design",
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "universal"
+          ]
+        },
+        {
+          "target": "zip",
+          "arch": [
+            "universal"
+          ]
+        }
+      ],
+      "icon": "build-resources/icon.icns"
+    },
+    "dmg": {
+      "title": "Whiteboard ${version}",
+      "contents": [
+        {
+          "x": 130,
+          "y": 220
+        },
+        {
+          "x": 410,
+          "y": 220,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    }
   }
 }

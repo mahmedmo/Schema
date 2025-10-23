@@ -200,9 +200,10 @@
 .shape-actions-theme-scope {
   --button-border: transparent;
   --button-bg: var(--color-surface-mid);
+  --button-hover-bg: var(--color-surface-high);
 }
 
 :root.theme--dark .shape-actions-theme-scope {
-  --button-hover-bg: #363541;
+  --button-hover-bg: #505050;
   --button-bg: var(--color-surface-high);
 }

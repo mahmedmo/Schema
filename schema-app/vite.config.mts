@@ -13,6 +13,7 @@ export default defineConfig(({ mode }) => {
   const envVars = loadEnv(mode, `../`);
   // https://vitejs.dev/config/
   return {
+    base: "./",
     server: {
       port: Number(envVars.VITE_APP_PORT || 3000),
       // open the browser
@@ -24,6 +25,21 @@ export default defineConfig(({ mode }) => {
     resolve: {
       alias: [
         {
+          find: /^schema-app\/(.*)/,
+          replacement: path.resolve(__dirname, "./$1"),
+        },
+        {
+          find: /^@whiteboard\/common$/,
+          replacement: path.resolve(
+            __dirname,
+            "../packages/common/src/index.ts",
+          ),
+        },
+        {
+          find: /^@whiteboard\/common\/(.*?)/,
+          replacement: path.resolve(__dirname, "../packages/common/src/$1"),
+        },
+        {
           find: /^@excalidraw\/common$/,
           replacement: path.resolve(
             __dirname,
@@ -33,6 +49,17 @@ export default defineConfig(({ mode }) => {
         {
           find: /^@excalidraw\/common\/(.*?)/,
           replacement: path.resolve(__dirname, "../packages/common/src/$1"),
+        },
+        {
+          find: /^@whiteboard\/element$/,
+          replacement: path.resolve(
+            __dirname,
+            "../packages/element/src/index.ts",
+          ),
+        },
+        {
+          find: /^@whiteboard\/element\/(.*?)/,
+          replacement: path.resolve(__dirname, "../packages/element/src/$1"),
         },
         {
           find: /^@excalidraw\/element$/,
@@ -46,6 +73,17 @@ export default defineConfig(({ mode }) => {
           replacement: path.resolve(__dirname, "../packages/element/src/$1"),
         },
         {
+          find: /^@whiteboard\/whiteboard$/,
+          replacement: path.resolve(
+            __dirname,
+            "../packages/excalidraw/index.tsx",
+          ),
+        },
+        {
+          find: /^@whiteboard\/whiteboard\/(.*?)/,
+          replacement: path.resolve(__dirname, "../packages/excalidraw/$1"),
+        },
+        {
           find: /^@excalidraw\/excalidraw$/,
           replacement: path.resolve(
             __dirname,
@@ -55,6 +93,14 @@ export default defineConfig(({ mode }) => {
         {
           find: /^@excalidraw\/excalidraw\/(.*?)/,
           replacement: path.resolve(__dirname, "../packages/excalidraw/$1"),
+        },
+        {
+          find: /^@whiteboard\/math$/,
+          replacement: path.resolve(__dirname, "../packages/math/src/index.ts"),
+        },
+        {
+          find: /^@whiteboard\/math\/(.*?)/,
+          replacement: path.resolve(__dirname, "../packages/math/src/$1"),
         },
         {
           find: /^@excalidraw\/math$/,
@@ -111,7 +157,7 @@ export default defineConfig(({ mode }) => {
     },
     plugins: [
       Sitemap({
-        hostname: "https://excalidraw.com",
+        hostname: "http://localhost",
         outDir: "build",
         changefreq: "monthly",
         // its static in public folder
@@ -198,10 +244,10 @@ export default defineConfig(({ mode }) => {
           ],
         },
         manifest: {
-          short_name: "Excalidraw",
-          name: "Excalidraw",
+          short_name: "Schema",
+          name: "Schema",
           description:
-            "Excalidraw is a whiteboard tool that lets you easily sketch diagrams that have a hand-drawn feel to them.",
+            "A minimalist drawing tool for sketching and diagramming.",
           icons: [
             {
               src: "android-chrome-192x192.png",
@@ -225,7 +271,7 @@ export default defineConfig(({ mode }) => {
             },
           ],
           start_url: "/",
-          id: "excalidraw",
+          id: "whiteboard",
           display: "standalone",
           theme_color: "#121212",
           background_color: "#ffffff",

@@ -179,43 +179,9 @@ const ActiveRoomDialog = ({
 const ShareDialogPicker = (props: ShareDialogProps) => {
   const { t } = useI18n();
 
-  const { collabAPI } = props;
-
-  const startCollabJSX = collabAPI ? (
-    <>
-      <div className="ShareDialog__picker__header">
-        {t("labels.liveCollaboration").replace(/\./g, "")}
-      </div>
-
-      <div className="ShareDialog__picker__description">
-        <div style={{ marginBottom: "1em" }}>{t("roomDialog.desc_intro")}</div>
-        {t("roomDialog.desc_privacy")}
-      </div>
-
-      <div className="ShareDialog__picker__button">
-        <FilledButton
-          size="large"
-          label={t("roomDialog.button_startSession")}
-          icon={playerPlayIcon}
-          onClick={() => {
-            trackEvent("share", "room creation", `ui (${getFrame()})`);
-            collabAPI.startCollaboration(null);
-          }}
-        />
-      </div>
-
-      {props.type === "share" && (
-        <div className="ShareDialog__separator">
-          <span>{t("shareDialog.or")}</span>
-        </div>
-      )}
-    </>
-  ) : null;
-
+  // Collaboration UI hidden for Schema - only show export link option
   return (
     <>
-      {startCollabJSX}
-
       {props.type === "share" && (
         <>
           <div className="ShareDialog__picker__header">
@@ -243,20 +209,11 @@ const ShareDialogPicker = (props: ShareDialogProps) => {
 };
 
 const ShareDialogInner = (props: ShareDialogProps) => {
-  const activeRoomLink = useAtomValue(activeRoomLinkAtom);
-
+  // Collaboration UI hidden for Schema - always show picker without active room dialog
   return (
     <Dialog size="small" onCloseRequest={props.handleClose} title={false}>
       <div className="ShareDialog">
-        {props.collabAPI && activeRoomLink ? (
-          <ActiveRoomDialog
-            collabAPI={props.collabAPI}
-            activeRoomLink={activeRoomLink}
-            handleClose={props.handleClose}
-          />
-        ) : (
-          <ShareDialogPicker {...props} />
-        )}
+        <ShareDialogPicker {...props} />
       </div>
     </Dialog>
   );
