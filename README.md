@@ -13,7 +13,7 @@ Schema is a fork of Excalidraw, rebranded for minimal, privacy-focused local use
 - Offline capable
 - No tracking or analytics
 - No collaboration features
-- Dark mode UI
+- Dark mode UI enhanced
 - Electron desktop app for macOS
 
 ## Getting Started
@@ -32,8 +32,6 @@ yarn install
 # Start development server
 yarn start
 ```
-
-The application will be available at `http://localhost:5173`
 
 ### Building for Production
 
@@ -63,12 +61,11 @@ MIT License - This project is a fork of [Excalidraw](https://github.com/excalidr
 
 ## Changes from Excalidraw
 
-- Removed all analytics and tracking (Sentry, Simple Analytics, etc.)
+- Removed all analytics and tracking
 - Removed social media links and external service integrations
 - Removed Excalidraw+ workspace features
 - Removed live collaboration features
-- Rebranded to "Schema"
+- Rebranded to "Schema" (just liked this name better)
 - Simplified for local use only
 - Added Electron desktop app support
 - Implemented true dark mode with dark grey UI
-- Frameless window design on Electron
